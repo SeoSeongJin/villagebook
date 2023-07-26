@@ -10,6 +10,7 @@ import Splash from './src/component/Splash';
 import MainStackNavigator from './src/navigator/MainStackNavigator';
 import store from './src/store/store';
 import messaging from '@react-native-firebase/messaging';
+import { createInstance, HackleProvider } from "@hackler/react-native-sdk";
 import {
   Alert,
   AppState,
@@ -47,6 +48,13 @@ const qeuryClient = new QueryClient({
     },
   }),
 });
+
+
+
+const config = {
+  debug: true
+};
+const hackleClient = createInstance("tLKGZ9Z8LVNokOAB96Eze2HDpJpEIVnp", config);
 
 const App = () => {
   // VersionCheck.getCountry().then(country => console.log(country)); // KR
@@ -172,11 +180,13 @@ const App = () => {
   //   );
 
   return (
+    <HackleProvider hackleClient={hackleClient}>
     <Provider store={store}>
       <QueryClientProvider client={qeuryClient}>
         <MainStackNavigator />
       </QueryClientProvider>
     </Provider>
+    </HackleProvider>
   );
 };
 

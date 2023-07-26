@@ -6,6 +6,7 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
+
   Text,
   TextInput,
   useWindowDimensions,
@@ -36,6 +37,7 @@ import AutoLogin from '../../component/loginScreen/AutoLogin';
 import appleAuth from '@invertase/react-native-apple-authentication';
 import jwtDecode from 'jwt-decode';
 import UserAgent from 'react-native-user-agent';
+import { createInstance, HackleProvider, useTrack } from "@hackler/react-native-sdk";
 
 const Login = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -59,6 +61,8 @@ const Login = ({navigation, route}) => {
       ? localStorageConfig.state.true
       : localStorageConfig.state.false;
   };
+
+  const track = useTrack();
 
   const mutate = useMutation(authAPI._login, {
     onSuccess: async e => {
@@ -88,6 +92,23 @@ const Login = ({navigation, route}) => {
         await AuthStorageModuel._setItemUserId(e.data.arrItems.mt_id);
         dispatch(setIsGuest(false));
         dispatch(setUserInfo(e.data.arrItems));
+
+        // 이벤트를 속성과 함께 전송
+        var today = new Date();
+        var year = today.getFullYear();
+        var month = ('0' + (today.getMonth() + 1)).slice(-2);
+        var day = ('0' + today.getDate()).slice(-2);
+        var dateString = year + '-' + month + '-' + day;
+
+        const event = {
+          key: "log_in",
+          properties: {
+            mtId: e.data.arrItems.mt_id,
+            date: dateString,
+          }
+        }
+
+        track(event);
 
         if(screenTo != ''){
           navigation.reset({
@@ -403,8 +424,11 @@ const Login = ({navigation, route}) => {
 
           <Pressable
             onPress={() => {
-              if (Object.keys(fm.errors).length === 0) fm.handleSubmit();
-              else Alert.alert('알림', fm.errors[Object.keys(fm.errors)[0]]);
+              if (Object.keys(fm.errors).length === 0) {
+                fm.handleSubmit();
+              } else {
+                Alert.alert('알림', fm.errors[Object.keys(fm.errors)[0]]);
+              }
             }}
             style={{
               width: '100%',
@@ -419,7 +443,6 @@ const Login = ({navigation, route}) => {
               로그인
             </TextMedium>
           </Pressable>
-
           <View
             style={{
               width: '100%',

@@ -186,6 +186,10 @@ PODS:
     - GoogleUtilities/MethodSwizzler
   - GoogleUtilities/UserDefaults (7.11.1):
     - GoogleUtilities/Logger
+  - Hackle (2.20.4)
+  - hackle-react-native-sdk (3.7.2):
+    - Hackle (= 2.20.4)
+    - React
   - iamport-react-native (2.0.2):
     - React-Core
   - kakao-login (5.2.6):
@@ -636,6 +640,7 @@ DEPENDENCIES:
   - FlipperKit/SKIOSNetworkPlugin (= 0.125.0)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - GoogleUtilities
+  - "hackle-react-native-sdk (from `../node_modules/@hackler/react-native-sdk`)"
   - iamport-react-native (from `../node_modules/iamport-react-native`)
   - "kakao-login (from `../node_modules/@react-native-seoul/kakao-login`)"
   - NMapsMap (= 3.15.0)
@@ -717,6 +722,7 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
+    - Hackle
     - KakaoSDKAuth
     - KakaoSDKCommon
     - KakaoSDKUser
@@ -744,6 +750,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/React/FBReactNativeSpec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  hackle-react-native-sdk:
+    :path: "../node_modules/@hackler/react-native-sdk"
   iamport-react-native:
     :path: "../node_modules/iamport-react-native"
   kakao-login:
@@ -876,6 +884,8 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 7e48a3249792ac35d6f18f107f63f199a7e9d0ce
   GoogleDataTransport: 8378d1fa8ac49753ea6ce70d65a7cb70ce5f66e6
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
+  Hackle: 53c08e215c2e3d13d23d89d85db472c2b18bb69f
+  hackle-react-native-sdk: 27fe14855431eb45d92d8d7456d81168e20a23d7
   iamport-react-native: 2effc6d89aebafca5117c214b7ed22c8d163cbb5
   kakao-login: 2fbe3c549915276a44f7777036ee316e720f4738
   KakaoSDKAuth: bb2dfa7be30daa8403c9cfc8001aa6fde7a5b779

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@actbase/react-daum-postcode": "^1.0.4",
+    "@hackler/react-native-sdk": "^3.7.2",
     "@invertase/react-native-apple-authentication": "^2.2.2",
     "@miblanchard/react-native-slider": "^2.1.0",
     "@notifee/react-native": "^5.5.0",
